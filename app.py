@@ -45,6 +45,20 @@ PASSWORD_FORM = '''
 </form>
 '''
 
+CONTENT_FORM = '''
+<form action='/' method='post'>
+    <input name='age' type='text' placeholder='минимальный возраст'>
+    <input name='city' type='text' placeholder='город'>
+    <select name="like_option" id="like_optioin">
+        <optgroup label="При соответствии параметром">
+            <option value="auto">Ставить лайк автоматически</option>
+            <option value="pause">Остановить поиск</option>
+        </optgroup>
+    </select>
+    <input name='start' type='submit'>Старт</input>
+</form>
+'''
+
 # Session name, API ID and hash to use; loaded from environmental variables
 SESSION = os.environ.get('TG_SESSION', 'quart')
 API_ID = 20387754
@@ -96,6 +110,9 @@ async def cleanup():
 async def root():
     # We want to update the global phone variable to remember it
     global phone
+    global city
+    global age
+    global like_option
 
     # Check form parameters (phone/code)
     form = await request.form
@@ -115,12 +132,22 @@ async def root():
     # If we're logged in, show them some messages from their first dialog
     if await client.is_user_authorized():
         # They are logged in, show them some messages from their first dialog
-        dialog = (await client.get_dialogs())[0]
-        result = '<h1>{}</h1>'.format(dialog.title)
-        async for m in client.iter_messages(dialog, 10):
-            result += await(format_message(m))
-
-        return await render_template_string(BASE_TEMPLATE, content=result)
+        # city = form['city']
+        output = ''
+        if 'start' in form:
+            age = form['age']
+            city = form['city']
+            like_option = form['like_option']
+            result = 'возраст: ' + age + ' город: ' + city + ' переключение ' + like_option
+            if like_option == 'pause':
+                # name = await get_name_from_tel()
+                output = 'ищу и лайкаю'
+            elif like_option == 'auto':
+                # name = await get_name_from_tel()
+                output = 'ищу и лайкаю'
+        else:
+            result = 'Ожидаю заполнения формы...'
+        return await render_template_string(BASE_TEMPLATE, content=result + CONTENT_FORM + output)
 
     # Ask for the phone if we don't know it yet
     if phone is None:
