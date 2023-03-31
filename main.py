@@ -6,6 +6,7 @@ import re
 api_id = 20387754
 api_hash = 'c47bb9cdd6c140651113f118ae27d79f'
 vinchik = 'leomatchbot'
+
 client = TelegramClient('session_name', api_id, api_hash)
 cities = input('Введи города через пробел с запятой').split(', ')
 
