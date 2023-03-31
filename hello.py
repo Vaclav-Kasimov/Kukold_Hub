@@ -21,14 +21,18 @@ def logout():
 
 @app.route('/success', methods=['GET', 'POST'])
 def success():
+    def Get_Code():
+        code = request.form.get("code")
+        return code
     if not session.get("tel"):
         return redirect("/login")
         
     if request.method == 'GET':
+        client.start(phone=session.get("tel"), code_callback=Get_Code)
         tel = session['tel']
         return render_template('index.html', form = 'code')
-    if request.method == 'POST':
-        client.start(phone=session.get("tel"), code=request.form.get("code"))
+    #if request.method == 'POST':
+
     
     #client.start(phone=session.get("tel"), fn)
 
