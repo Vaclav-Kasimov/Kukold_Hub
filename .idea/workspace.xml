@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b15964b2-6f14-47cc-badd-2aa7ca4d1089" name="Changes" comment="working prototype v0.1">
+    <list default="true" id="b15964b2-6f14-47cc-badd-2aa7ca4d1089" name="Changes" comment="working prototype v0.1.1">
+      <change afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quart.session" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quart.session-journal" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/search.py" beforeDir="false" afterPath="$PROJECT_DIR$/search.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -132,7 +135,14 @@
       <option name="project" value="LOCAL" />
       <updated>1680345423265</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="working prototype v0.1.1">
+      <created>1680349585816</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1680349585817</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -153,6 +163,7 @@
     <MESSAGE value="flask" />
     <MESSAGE value="error no current event loop in thread 'Thread-6" />
     <MESSAGE value="working prototype v0.1" />
-    <option name="LAST_COMMIT_MESSAGE" value="working prototype v0.1" />
+    <MESSAGE value="working prototype v0.1.1" />
+    <option name="LAST_COMMIT_MESSAGE" value="working prototype v0.1.1" />
   </component>
 </project>
