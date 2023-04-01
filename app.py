@@ -63,8 +63,8 @@ CONTENT_FORM = '''
 
 # Session name, API ID and hash to use; loaded from environmental variables
 SESSION = os.environ.get('TG_SESSION', 'quart')
-API_ID = 20387754
-API_HASH = 'c47bb9cdd6c140651113f118ae27d79f'
+API_ID = input('API_ ID введи ')
+API_HASH = input('API_ ХЭШ введи ')
 
 # Telethon client
 client = TelegramClient(SESSION, API_ID, API_HASH)
