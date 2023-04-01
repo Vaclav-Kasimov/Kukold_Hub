@@ -6,6 +6,7 @@ from quart import Quart, render_template_string, request
 from telethon import TelegramClient, utils
 from telethon.errors import SessionPasswordNeededError
 
+import search
 
 def get_env(name, message):
     if name in os.environ:
@@ -56,6 +57,7 @@ CONTENT_FORM = '''
         </optgroup>
     </select>
     <input name='start' type='submit'>Старт</input>
+    <input name='stop' type='submit'>Stop</input>
 </form>
 '''
 
@@ -133,21 +135,19 @@ async def root():
     if await client.is_user_authorized():
         # They are logged in, show them some messages from their first dialog
         # city = form['city']
-        output = ''
         if 'start' in form:
             age = form['age']
             city = form['city']
             like_option = form['like_option']
             result = 'возраст: ' + age + ' город: ' + city + ' переключение ' + like_option
-            if like_option == 'pause':
-                # name = await get_name_from_tel()
-                output = 'ищу и лайкаю'
-            elif like_option == 'auto':
-                # name = await get_name_from_tel()
-                output = 'ищу и лайкаю'
+            output = search.FindGirl(age, city, like_option, client)
+        elif 'stop' in form:
+            result = 'остановлено'
+            search.stopSearch(client)
         else:
             result = 'Ожидаю заполнения формы...'
-        return await render_template_string(BASE_TEMPLATE, content=result + CONTENT_FORM + output)
+            output = 'Ожидаю заполнения формы...'
+        return await render_template_string(BASE_TEMPLATE, content=result + CONTENT_FORM + str(output))
 
     # Ask for the phone if we don't know it yet
     if phone is None:
