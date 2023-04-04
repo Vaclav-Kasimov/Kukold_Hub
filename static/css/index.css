@@ -1,0 +1,237 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@200;300;400;500;600;700&display=swap");
+body {
+  margin: 0;
+  color: #2b2b2b;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: "Noto Sans Mono", monospace;
+}
+
+.app {
+  background: linear-gradient(to left, #131313, #2b2b2b);
+  width: 100vw;
+  height: 100vh;
+  padding: 2rem 0 0 0;
+  position: relative;
+}
+
+.app::after {
+  content: "";
+  position: absolute;
+  width: 15rem;
+  height: 20rem;
+  background-size: contain;
+  background-repeat: no-repeat;
+  bottom: 0;
+  right: 0;
+}
+
+/* content */
+.content {
+  width: 50vw;
+  height: 90vh;
+  background: linear-gradient(#e66465, #9198e5);
+  margin: 0 auto;
+  border-radius: 1em;
+  position: relative;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  padding: 3rem 6rem;
+}
+
+.app::after{
+  content: "";
+  background-size: cover;
+  position: absolute;
+  background-repeat: no-repeat;
+  width: 15rem;
+  height: 20rem;
+  bottom: 0;
+  right: 0;
+  background-image: url("/static/img/anime.png");
+}
+
+/* form */
+.form {
+  display: flex;
+  flex-flow: column;
+  min-width: 50%;
+  max-width: 75%;
+  margin: 0 auto;
+  padding: 1rem;
+  border-radius: 1rem;
+}
+
+.form__input:first-child,
+.form__btn:first-child,
+.form__select:first-child {
+  margin-top: 0;
+}
+
+.form__input {
+  margin-top: 1rem;
+  font-size: 1rem;
+}
+
+.form__select {
+  margin-top: 1rem;
+  font-size: 0.75rem;
+}
+
+.form__text{
+  margin-top: 2rem;
+}
+
+.form__btns {
+  margin-top: 1rem;
+  display: flex;
+  width: 50%;
+  margin: 1rem auto 0 auto;
+  justify-content: space-between;
+}
+
+/*input */
+.input {
+  border: none;
+  border-radius: 0.25em;
+  padding: 0.75rem 0.5rem;
+  background-color: #fcfcfc;
+  box-shadow: 0 0 0.1rem 0.05rem rgb(102, 102, 102);
+}
+
+.input:focus,
+.input:active {
+  border: none;
+  outline: none;
+}
+
+/* btn */
+.btn {
+  box-shadow: 0 0 0.1rem 0.05rem rgb(102, 102, 102);
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  border-radius: 0.25em;
+  background-color: #fcfcfc;
+}
+
+.btn:active {
+  border: none;
+}
+
+.btn_show {
+  box-shadow: unset;
+  position: absolute;
+  top: 0;
+  width: 3rem;
+  height: 3rem;
+  border: none;
+  padding: 0;
+  background-color: transparent;
+  background-image: url("../img/arrow_down.ico");
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+
+.btn_show_rotated {
+  transition: unset;
+  transform: rotate(180deg);
+}
+
+.btn_like {
+  background-image: url("../img/like.png");
+  background-size: 75%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: green;
+}
+
+.btn_dislike {
+  transform: rotate(180deg);
+  background-image: url("../img/like.png");
+  background-size: 75%;
+  background-position: center 20%;
+  background-repeat: no-repeat;
+  background-color: #8d8d8d;
+}
+
+/* select */
+.select {
+  box-shadow: 0 0 0.1rem 0.05rem rgb(102, 102, 102);
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  border-radius: 0.25em;
+  background-color: #fcfcfc;
+  padding: 0.75rem 0.3rem;
+}
+
+.select:active,
+.select:focus {
+  outline: none;
+}
+
+/* search */
+.form_search {
+  background-color: #de292c;
+  opacity: 0;
+  transition: 0.5s transform, 0.25s opacity;
+  position: absolute;
+  top: 10%;
+  z-index: -100;
+}
+
+.form_search_shown {
+  z-index: 100;
+  opacity: 1;
+  transform: translateY(1rem);
+}
+
+.form_search>.form__btns>.form__btn {
+  padding: 0.25rem 0.75rem;
+}
+
+/* worksheet */
+.worksheet {
+  height: 100%;
+  font-size: 1rem;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #e66465;
+  border-radius: 3rem;
+  box-shadow: 0 0 0.3rem 0.01rem rgb(41, 41, 41);
+  padding: 1rem 2rem;
+}
+
+.worksheet__img{
+  max-height: 50%;
+  max-width: 60%;
+  border: 0.25rem dotted rgb(177, 1, 97);
+}
+
+.worksheet__btn{
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.worksheet__disc{
+}
+
+/* .form_worksheet>.form__img{
+  border-radius: 1rem;
+  height: 60%;
+}
+
+.form_worksheet>.form__btns {
+  margin-top: auto;
+}
+
+.form_worksheet>.form__btns>.btn {
+  width: 3rem;
+  height: 3rem;
+} */

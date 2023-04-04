@@ -1,7 +1,8 @@
 import base64
 import os
+import time
 
-from quart import Quart, render_template_string, request
+from quart import Quart, render_template_string, render_template, request, redirect, make_response
 
 from telethon import TelegramClient, utils
 from telethon.errors import SessionPasswordNeededError
@@ -56,15 +57,15 @@ CONTENT_FORM = '''
             <option value="pause">Остановить поиск</option>
         </optgroup>
     </select>
-    <input name='start' type='submit'>Старт</input>
-    <input name='stop' type='submit'>Stop</input>
+    <button name='start' type='submit'>Старт</button>
+    <button name='stop' type='submit'>Стоп</button>
 </form>
 '''
 
 # Session name, API ID and hash to use; loaded from environmental variables
 SESSION = os.environ.get('TG_SESSION', 'quart')
-API_ID = input('API_ ID введи ')
-API_HASH = input('API_ ХЭШ введи ')
+API_ID = '20387754'
+API_HASH = 'c47bb9cdd6c140651113f118ae27d79f'
 
 # Telethon client
 client = TelegramClient(SESSION, API_ID, API_HASH)
@@ -74,7 +75,7 @@ phone = None
 # Quart app
 app = Quart(__name__)
 app.secret_key = 'CHANGE THIS TO SOMETHING SECRET'
-
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 
 # Helper method to format messages nicely
 async def format_message(message):
@@ -107,6 +108,23 @@ async def startup():
 async def cleanup():
     await client.disconnect()
 
+@app.route('/xyu')
+async def xyu():
+    response = await make_response({"Pidor": "pidoras"})
+    time.sleep(3)
+    return response
+    
+@app.route('/logged', methods=['GET', 'POST'])
+async def logged():
+    # if request.method == 'POST':
+    #     def aa(): 
+    #         return 'asdasd'
+    #     return await aa()
+    if await client.is_user_authorized():
+        return await render_template('index.html', form="search-form")
+    else:
+        return await redirect('/')
+
 
 @app.route('/', methods=['GET', 'POST'])
 async def root():
@@ -133,21 +151,7 @@ async def root():
 
     # If we're logged in, show them some messages from their first dialog
     if await client.is_user_authorized():
-        # They are logged in, show them some messages from their first dialog
-        # city = form['city']
-        if 'start' in form:
-            age = form['age']
-            city = form['city']
-            like_option = form['like_option']
-            result = 'возраст: ' + age + ' город: ' + city + ' переключение ' + like_option
-            output = search.FindGirl(age, city, like_option, client)
-        elif 'stop' in form:
-            result = 'остановлено'
-            search.stopSearch(client)
-        else:
-            result = 'Ожидаю заполнения формы...'
-            output = 'Ожидаю заполнения формы...'
-        return await render_template_string(BASE_TEMPLATE, content=result + CONTENT_FORM + str(output))
+        return redirect('/logged')
 
     # Ask for the phone if we don't know it yet
     if phone is None:

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta
+      http-equiv="Cache-Control"
+      content="no-cache, no-store, must-revalidate"
+    />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Flask_app</title>
+    <link rel="stylesheet" type="text/css" href="static/css/index.css" />
+  </head>
+  <body>
+    <div class="app">
+      <div class="content">
+        {{ content | safe }}
+        <div class="phone-form"></div>
+        <div class="code-form"></div>
+        {% if form == 'search-form' %}
+        <button class="btn btn_show btn_show_form_search"></button>
+        <form
+          class="form form_search"
+          action="{{ url_for('logged') }}"
+          method="POST"
+        >
+          <input
+            class="input form__input"
+            name="age"
+            type="text"
+            placeholder="минимальный возраст"
+          />
+          <input
+            class="input form__input"
+            name="city"
+            type="text"
+            placeholder="город"
+          />
+          <select
+            class="select form__select"
+            name="like_option"
+            id="like_optioin"
+          >
+            <option value="auto">Ставить лайк автоматически</option>
+            <option value="pause">Остановить поиск</option>
+          </select>
+          <div class="form__btns">
+            <button class="btn form__btn" name="start" type="submit">
+              Старт
+            </button>
+            <button class="btn form__btn" name="stop" type="submit">
+              Стоп
+            </button>
+          </div>
+        </form>
+        {% endif %}
+        <form class="worksheet">
+          <img class="worksheet__img" src="./static/img/girl.jpg" />
+          <div class="worksheet__text">
+            <div class="worksheet__age">Возраст: 10</div>
+            <div class="worksheet__city">Город: Alanya</div>
+            <div class="worksheet__name">Имя: Шлюха</div>
+            <div class="worksheet__disc">
+              Проституция в Турции разрешена законодательством и хорошо
+              организована на уровне местных муниципалитетов.
+            </div>
+          </div>
+          <div class="worksheet__btns">
+            <button
+              class="btn btn_like worksheet__btn"
+              name="asd"
+              type="submit"
+            ></button>
+            <button
+              class="btn btn_dislike worksheet__btn"
+              name="asdas"
+              type="submit"
+            ></button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <script type="text/javascript" src="static/js/script.js"></script>
+  </body>
+</html>
